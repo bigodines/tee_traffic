@@ -1,5 +1,5 @@
 {application, tee_traffic,
- [{description, "An OTP application"},
+ [{description, "Teeproxy/gor-like app writen in a better programming language"},
   {vsn, "0.1.0"},
   {registered, []},
   {mod, { tee_traffic_app, []}},

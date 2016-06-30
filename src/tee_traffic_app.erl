@@ -7,15 +7,20 @@
 
 -behaviour(application).
 
-%% Application callbacks
--export([start/2
-        ,stop/1]).
+-export([start/2,
+         stop/1]).
 
 %%====================================================================
 %% API
 %%====================================================================
 
 start(_StartType, _StartArgs) ->
+    {ok, _} = ranch:start_listener(tee_traffic,
+                                   10,
+                                   ranch_tcp,
+                                   [{port, 5555}],
+                                   split_traffic_protocol,
+                                   []),
     tee_traffic_sup:start_link().
 
 %%--------------------------------------------------------------------
